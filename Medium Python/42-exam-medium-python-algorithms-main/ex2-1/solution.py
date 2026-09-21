@@ -1,11 +1,25 @@
 
+# def list_intersection(lists: list[list[int]]) -> list[int]:
+#     if not lists:              # if the outer list is empty
+#         return lists           # return [] (lists is already the empty list)
+
+#     common = set(lists[0])     # We start with the first list so the loop has something to intersect against
+
+#     for lst in lists[1:]:      # go through the REST of the inner lists (skip the first)
+#         common &= set(lst)     # keep only numbers that are in BOTH common AND this list
+
+#     return sorted(common)      # sort the survivors ascending, return as a list
+
+
 def list_intersection(lists: list[list[int]]) -> list[int]:
-    if not lists:              # if the outer list is empty
-        return lists           # return [] (lists is already the empty list)
+    if not lists:
+        return lists
 
-    common = set(lists[0])     # We start with the first list so the loop has something to intersect against
+    common = set(lists[0])
+    for lst in lists[1:]:
+        common = common & set(lst)
 
-    for lst in lists[1:]:      # go through the REST of the inner lists (skip the first)
-        common &= set(lst)     # keep only numbers that are in BOTH common AND this list
+    return sorted(common)
 
-    return sorted(common)      # sort the survivors ascending, return as a list
+
+print(list_intersection([[5, 4, 3], [2, 1, 3], [2, 1, 3]]))
